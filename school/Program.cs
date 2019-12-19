@@ -56,14 +56,27 @@ namespace school
         public override bool Equals(object obj)
         {
             bool compare = false;
+            // he had this typed, but it breaks my code? Student studentObj;
+
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+
             Student studentObj = obj as Student;
-            if (this.StudentId == studentObj.StudentId && this.Name == studentObj.Name)
+
+            if (this.StudentId == studentObj.StudentId &&
+                this.Name == studentObj.Name)
             {
                 compare = true;
             }
             return compare;
         }
-
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() * 1000 + StudentId;
+        }
 
         public static double GetCreditsPerYear()
         {
@@ -133,6 +146,9 @@ namespace school
             Console.WriteLine("1 " + st.Equals(st2));
             Console.WriteLine("2 " + st.Equals(st4));
             Console.WriteLine("3 " + st.Equals(new Student("Ben", 0)));
+
+            Console.WriteLine(st.GetHashCode() + " " + st2.GetHashCode());
+            Console.WriteLine(new Student("Ben", 0).GetHashCode());
             }
         }
 
