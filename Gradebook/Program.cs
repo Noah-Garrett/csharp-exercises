@@ -23,6 +23,12 @@ namespace Gradebook
             }
             while (newStudent != "");
 
+            //write a index based for loop to print the students list
+            for (int i = 0; i<students.Count; i++)
+            {
+                Console.WriteLine((i+1)+ " " + students[i]);
+            }
+
             // Get student grades
             foreach (string student in students)
             {
